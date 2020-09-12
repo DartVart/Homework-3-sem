@@ -11,4 +11,4 @@ Windows Linux Linux MacOS Windows Linux Linux MacOS Windows Linux Linux
 0 0 0 0 0 1 0 0 0 0 0
 0 0 0 0 0 0 1 0 0 0 0
 0 0 0 0 0 0 0 1 0 0 0
-Petya(1) AAA(8 3)
+Petya(1) MorrisWorm(8 3)
