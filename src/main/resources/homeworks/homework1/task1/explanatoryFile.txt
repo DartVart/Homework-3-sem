@@ -1,0 +1,8 @@
+Windows(0.3) Linux(0.1) MacOS(0.2)    // The available os and the probabilities of their infection are written here.
+Windows Linux Linux MacOS             // Computers referred to as OS names. They will be printed in this order.
+0 1 0 1                               |
+1 0 1 0                               | Adjacency matrix accepting only 1 or 0.
+0 1 0 0                               | The column and row number correspond to the computer number as defined above.
+1 0 0 0                               |
+Virus_1(1) Virus_2(2 3)               // Virus names and computer indexes (starting with 1) for initial infection.
+                                         There must be white space between indices (for top line)

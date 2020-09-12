@@ -1,0 +1,8 @@
+SuperVirusSafeSystem(0.0) Windows(1.0)
+Windows  SuperVirusSafeSystem   SuperVirusSafeSystem   SuperVirusSafeSystem SuperVirusSafeSystem
+0 1 1 1 1
+1 0 0 0 0
+1 0 0 0 0
+1 0 0 0 0
+1 0 0 0 0
+ElectronicKiller(1)

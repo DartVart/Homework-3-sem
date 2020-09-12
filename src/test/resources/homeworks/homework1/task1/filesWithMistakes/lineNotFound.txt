@@ -1,0 +1,6 @@
+Windows(1.00) Linux(1.00) MacOS(1.00)
+Windows Linux Linux MacOS
+0 1 0 1
+1 0 1 0
+0 1 0 0
+1 0 0 0
