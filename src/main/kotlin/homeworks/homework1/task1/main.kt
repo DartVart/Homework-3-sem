@@ -58,7 +58,7 @@ fun printIntroduction(pathToBootFile: String, pathToExampleFile: String) {
     println("You only need to enter the number of moves and the delay between moves.")
 }
 
-fun onParsingException(exception: Exception) {
+fun handleParsingException(exception: Exception) {
     println("Parsing error: ${exception.message}")
 }
 
@@ -69,13 +69,13 @@ fun importNetworkFromFile(inputFile: File): NetworkData? {
     try {
         return NetworkFileParser().importNetwork(inputFile)
     } catch (exception: IllegalStateException) {
-        onParsingException(exception)
+        handleParsingException(exception)
     } catch (exception: NumberFormatException) {
-        onParsingException(exception)
+        handleParsingException(exception)
     } catch (exception: NoSuchElementException) {
-        onParsingException(exception)
+        handleParsingException(exception)
     } catch (exception: FileNotFoundException) {
-        onParsingException(exception)
+        handleParsingException(exception)
     }
     return null
 }

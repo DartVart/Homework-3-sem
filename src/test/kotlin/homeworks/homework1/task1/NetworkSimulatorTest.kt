@@ -99,168 +99,160 @@ internal class NetworkSimulatorTest {
         @Nested
         inner class TwoViruses {
             private val fileName = "twoViruses.txt"
+            private val firstVirus = Virus("Lukavyj")
+            private val secondVirus = Virus("Insidious")
 
-            @Nested
-            inner class FirstVirus {
-                private val virus = Virus("Lukavyj")
+            @Test
+            fun run_firstVirus_0move_mustWork() {
+                val networkSimulator = getNetwork(fileName)
+                networkSimulator.run(0, 0)
+                val indexesOfInfectedComputers = listOf(0)
+                val indexesOfUninfectedComputers = listOf(1, 2, 3, 4, 5, 6, 7)
 
-                @Test
-                fun run_0move_mustWork() {
-                    val networkSimulator = getNetwork(fileName)
-                    networkSimulator.run(0, 0)
-                    val indexesOfInfectedComputers = listOf(0)
-                    val indexesOfUninfectedComputers = listOf(1, 2, 3, 4, 5, 6, 7)
-
-                    assertTrue(
-                        checkNetworkInfection(
-                            networkSimulator,
-                            indexesOfInfectedComputers,
-                            indexesOfUninfectedComputers,
-                            virus
-                        )
+                assertTrue(
+                    checkNetworkInfection(
+                        networkSimulator,
+                        indexesOfInfectedComputers,
+                        indexesOfUninfectedComputers,
+                        firstVirus
                     )
-                }
-
-                @Test
-                fun run_1move_mustWork() {
-                    val networkSimulator = getNetwork(fileName)
-                    networkSimulator.run(1, 0)
-                    val indexesOfInfectedComputers = listOf(0, 2)
-                    val indexesOfUninfectedComputers = listOf(1, 3, 4, 5, 6, 7)
-
-                    assertTrue(
-                        checkNetworkInfection(
-                            networkSimulator,
-                            indexesOfInfectedComputers,
-                            indexesOfUninfectedComputers,
-                            virus
-                        )
-                    )
-                }
-
-                @Test
-                fun run_2move_mustWork() {
-                    val networkSimulator = getNetwork(fileName)
-                    networkSimulator.run(2, 0)
-                    val indexesOfInfectedComputers = listOf(0, 2, 1, 5, 3)
-                    val indexesOfUninfectedComputers = listOf(4, 6, 7)
-
-                    assertTrue(
-                        checkNetworkInfection(
-                            networkSimulator,
-                            indexesOfInfectedComputers,
-                            indexesOfUninfectedComputers,
-                            virus
-                        )
-                    )
-                }
-
-                @Test
-                fun run_3move_mustWork() {
-                    val networkSimulator = getNetwork(fileName)
-                    networkSimulator.run(3, 0)
-                    val indexesOfInfectedComputers = listOf(0, 2, 1, 5, 3, 4, 6)
-                    val indexesOfUninfectedComputers = listOf(7)
-
-                    assertTrue(
-                        checkNetworkInfection(
-                            networkSimulator,
-                            indexesOfInfectedComputers,
-                            indexesOfUninfectedComputers,
-                            virus
-                        )
-                    )
-                }
-
-                @Test
-                fun run_4move_mustWork() {
-                    val networkSimulator = getNetwork(fileName)
-                    networkSimulator.run(4, 0)
-                    val indexesOfInfectedComputers = listOf(0, 2, 1, 5, 3, 4, 6, 7)
-                    val indexesOfUninfectedComputers = listOf<Int>()
-
-                    assertTrue(
-                        checkNetworkInfection(
-                            networkSimulator,
-                            indexesOfInfectedComputers,
-                            indexesOfUninfectedComputers,
-                            virus
-                        )
-                    )
-                }
+                )
             }
 
-            @Nested
-            inner class SecondVirus {
-                private val virus = Virus("Insidious")
+            @Test
+            fun run_firstVirus_1move_mustWork() {
+                val networkSimulator = getNetwork(fileName)
+                networkSimulator.run(1, 0)
+                val indexesOfInfectedComputers = listOf(0, 2)
+                val indexesOfUninfectedComputers = listOf(1, 3, 4, 5, 6, 7)
 
-                @Test
-                fun run_0move_mustWork() {
-                    val networkSimulator = getNetwork(fileName)
-                    networkSimulator.run(0, 0)
-                    val indexesOfInfectedComputers = listOf(7, 4)
-                    val indexesOfUninfectedComputers = listOf(0, 1, 2, 3, 5, 6)
-
-                    assertTrue(
-                        checkNetworkInfection(
-                            networkSimulator,
-                            indexesOfInfectedComputers,
-                            indexesOfUninfectedComputers,
-                            virus
-                        )
+                assertTrue(
+                    checkNetworkInfection(
+                        networkSimulator,
+                        indexesOfInfectedComputers,
+                        indexesOfUninfectedComputers,
+                        firstVirus
                     )
-                }
+                )
+            }
 
-                @Test
-                fun run_1move_mustWork() {
-                    val networkSimulator = getNetwork(fileName)
-                    networkSimulator.run(1, 0)
-                    val indexesOfInfectedComputers = listOf(7, 6, 4, 1)
-                    val indexesOfUninfectedComputers = listOf(0, 2, 3, 5)
+            @Test
+            fun run_firstVirus_2move_mustWork() {
+                val networkSimulator = getNetwork(fileName)
+                networkSimulator.run(2, 0)
+                val indexesOfInfectedComputers = listOf(0, 2, 1, 5, 3)
+                val indexesOfUninfectedComputers = listOf(4, 6, 7)
 
-                    assertTrue(
-                        checkNetworkInfection(
-                            networkSimulator,
-                            indexesOfInfectedComputers,
-                            indexesOfUninfectedComputers,
-                            virus
-                        )
+                assertTrue(
+                    checkNetworkInfection(
+                        networkSimulator,
+                        indexesOfInfectedComputers,
+                        indexesOfUninfectedComputers,
+                        firstVirus
                     )
-                }
+                )
+            }
 
-                @Test
-                fun run_2move_mustWork() {
-                    val networkSimulator = getNetwork(fileName)
-                    networkSimulator.run(2, 0)
-                    val indexesOfInfectedComputers = listOf(7, 6, 3, 2, 1, 4)
-                    val indexesOfUninfectedComputers = listOf(0, 5)
+            @Test
+            fun run_firstVirus_3move_mustWork() {
+                val networkSimulator = getNetwork(fileName)
+                networkSimulator.run(3, 0)
+                val indexesOfInfectedComputers = listOf(0, 2, 1, 5, 3, 4, 6)
+                val indexesOfUninfectedComputers = listOf(7)
 
-                    assertTrue(
-                        checkNetworkInfection(
-                            networkSimulator,
-                            indexesOfInfectedComputers,
-                            indexesOfUninfectedComputers,
-                            virus
-                        )
+                assertTrue(
+                    checkNetworkInfection(
+                        networkSimulator,
+                        indexesOfInfectedComputers,
+                        indexesOfUninfectedComputers,
+                        firstVirus
                     )
-                }
+                )
+            }
 
-                @Test
-                fun run_3move_mustWork() {
-                    val networkSimulator = getNetwork(fileName)
-                    networkSimulator.run(3, 0)
-                    val indexesOfInfectedComputers = listOf(7, 6, 3, 2, 1, 4, 0, 5)
-                    val indexesOfUninfectedComputers = listOf<Int>()
+            @Test
+            fun run_firstVirus_4move_mustWork() {
+                val networkSimulator = getNetwork(fileName)
+                networkSimulator.run(4, 0)
+                val indexesOfInfectedComputers = listOf(0, 2, 1, 5, 3, 4, 6, 7)
+                val indexesOfUninfectedComputers = listOf<Int>()
 
-                    assertTrue(
-                        checkNetworkInfection(
-                            networkSimulator,
-                            indexesOfInfectedComputers,
-                            indexesOfUninfectedComputers,
-                            virus
-                        )
+                assertTrue(
+                    checkNetworkInfection(
+                        networkSimulator,
+                        indexesOfInfectedComputers,
+                        indexesOfUninfectedComputers,
+                        firstVirus
                     )
-                }
+                )
+            }
+
+            @Test
+            fun run_secondVirus_0move_mustWork() {
+                val networkSimulator = getNetwork(fileName)
+                networkSimulator.run(0, 0)
+                val indexesOfInfectedComputers = listOf(7, 4)
+                val indexesOfUninfectedComputers = listOf(0, 1, 2, 3, 5, 6)
+
+                assertTrue(
+                    checkNetworkInfection(
+                        networkSimulator,
+                        indexesOfInfectedComputers,
+                        indexesOfUninfectedComputers,
+                        secondVirus
+                    )
+                )
+            }
+
+            @Test
+            fun run_secondVirus_1move_mustWork() {
+                val networkSimulator = getNetwork(fileName)
+                networkSimulator.run(1, 0)
+                val indexesOfInfectedComputers = listOf(7, 6, 4, 1)
+                val indexesOfUninfectedComputers = listOf(0, 2, 3, 5)
+
+                assertTrue(
+                    checkNetworkInfection(
+                        networkSimulator,
+                        indexesOfInfectedComputers,
+                        indexesOfUninfectedComputers,
+                        secondVirus
+                    )
+                )
+            }
+
+            @Test
+            fun run_secondVirus_2move_mustWork() {
+                val networkSimulator = getNetwork(fileName)
+                networkSimulator.run(2, 0)
+                val indexesOfInfectedComputers = listOf(7, 6, 3, 2, 1, 4)
+                val indexesOfUninfectedComputers = listOf(0, 5)
+
+                assertTrue(
+                    checkNetworkInfection(
+                        networkSimulator,
+                        indexesOfInfectedComputers,
+                        indexesOfUninfectedComputers,
+                        secondVirus
+                    )
+                )
+            }
+
+            @Test
+            fun run_secondVirus_3move_mustWork() {
+                val networkSimulator = getNetwork(fileName)
+                networkSimulator.run(3, 0)
+                val indexesOfInfectedComputers = listOf(7, 6, 3, 2, 1, 4, 0, 5)
+                val indexesOfUninfectedComputers = listOf<Int>()
+
+                assertTrue(
+                    checkNetworkInfection(
+                        networkSimulator,
+                        indexesOfInfectedComputers,
+                        indexesOfUninfectedComputers,
+                        secondVirus
+                    )
+                )
             }
         }
     }
