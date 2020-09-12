@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Assertions.assertThrows
 import java.io.File
 import java.io.FileNotFoundException
-import java.lang.IndexOutOfBoundsException
 import java.lang.NumberFormatException
 import kotlin.NoSuchElementException
 
@@ -84,7 +83,7 @@ internal class NetworkFileParserTest {
 
         @Test
         fun wrongNumberInComputerIndex_throwsException() {
-            assertThrows(IndexOutOfBoundsException::class.java) {
+            assertThrows(IllegalStateException::class.java) {
                 parseErroneousFile("wrongNumberInComputerIndex.txt")
             }
         }
