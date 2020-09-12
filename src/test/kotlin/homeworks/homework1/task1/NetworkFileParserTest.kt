@@ -12,7 +12,8 @@ import java.lang.NumberFormatException
 import kotlin.NoSuchElementException
 
 const val PATH_TO_DIRECTORY_WITH_ERRONEOUS_TEXTS = "./src/test/resources/homeworks/homework1/task1/filesWithMistakes"
-const val PATH_TO_DIRECTORY_WITH_TEXTS_WITHOUT_MISTAKES = "./src/test/resources/homeworks/homework1/task1/filesWithoutMistakes"
+const val PATH_TO_DIRECTORY_WITH_TEXTS_WITHOUT_MISTAKES =
+    "./src/test/resources/homeworks/homework1/task1/filesWithoutMistakes"
 
 internal class NetworkFileParserTest {
     private val networkFileParser = NetworkFileParser()
@@ -83,12 +84,16 @@ internal class NetworkFileParserTest {
 
         @Test
         fun wrongNumberInComputerIndex_throwsException() {
-            assertThrows(IndexOutOfBoundsException::class.java) { parseErroneousFile("wrongNumberInComputerIndex.txt") }
+            assertThrows(IndexOutOfBoundsException::class.java) {
+                parseErroneousFile("wrongNumberInComputerIndex.txt")
+            }
         }
 
         @Test
         fun notNumberInPlaceOfComputerIndex_throwsException() {
-            assertThrows(NumberFormatException::class.java) { parseErroneousFile("notNumberInPlaceOfComputerIndex.txt") }
+            assertThrows(NumberFormatException::class.java) {
+                parseErroneousFile("notNumberInPlaceOfComputerIndex.txt")
+            }
         }
 
         @Test
@@ -118,17 +123,23 @@ internal class NetworkFileParserTest {
 
         @Test
         fun notNumberInPlaceOfInfectionProbability_throwsException() {
-            assertThrows(NumberFormatException::class.java) { parseErroneousFile("notNumberInPlaceOfInfectionProbability.txt") }
+            assertThrows(NumberFormatException::class.java) {
+                parseErroneousFile("notNumberInPlaceOfInfectionProbability.txt")
+            }
         }
 
         @Test
         fun wrongNumberInInfectionProbability_throwsException() {
-            assertThrows(IllegalStateException::class.java) { parseErroneousFile("wrongNumberInInfectionProbability.txt") }
+            assertThrows(IllegalStateException::class.java) {
+                parseErroneousFile("wrongNumberInInfectionProbability.txt")
+            }
         }
 
         @Test
         fun noProperlyDescribedVirus_throwsException() {
-            assertThrows(IllegalStateException::class.java) { parseErroneousFile("noProperlyDescribedVirus.txt") }
+            assertThrows(IllegalStateException::class.java) {
+                parseErroneousFile("noProperlyDescribedVirus.txt")
+            }
         }
     }
 }

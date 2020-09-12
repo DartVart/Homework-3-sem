@@ -2,10 +2,10 @@ package homeworks.homework1.task1
 
 import java.io.File
 import java.io.FileNotFoundException
-import java.lang.IllegalStateException
 import java.lang.IndexOutOfBoundsException
 import java.lang.NumberFormatException
 import java.util.Scanner
+import kotlin.IllegalStateException
 
 class NetworkFileParser {
     /**
@@ -45,7 +45,9 @@ class NetworkFileParser {
         getParsedPairs(textLine).forEach {
             try {
                 val infectionProbability = it.second.toDouble()
-                check(infectionProbability in 0.0..1.0) { "The infection probability at ${it.first} must be between 0 and 1" }
+                check(infectionProbability in 0.0..1.0) {
+                    "The infection probability at ${it.first} must be between 0 and 1"
+                }
                 operatingSystems.add(OperatingSystem(it.first, infectionProbability))
             } catch (exception: NumberFormatException) {
                 throw NumberFormatException("The infection probability at ${it.first} not a number")
@@ -66,7 +68,10 @@ class NetworkFileParser {
         return computers
     }
 
-    private fun getComputersNetworkData(textLines: List<String>, computers: List<Computer>): MutableList<ComputerNetworkData> {
+    private fun getComputersNetworkData(
+        textLines: List<String>,
+        computers: List<Computer>
+    ): MutableList<ComputerNetworkData> {
         val computersData = mutableListOf<ComputerNetworkData>()
         textLines.forEachIndexed { rowIndex, textLine ->
             val connectedComputers = mutableSetOf<Computer>()
@@ -95,11 +100,13 @@ class NetworkFileParser {
                 val virus = Virus(it.first)
                 viruses.add(virus)
                 val indexesOfInfectedComputers = parseItemsSeparatedByWhitespace(it.second).map { it.toInt() - 1 }
-                indexesOfInfectedComputers.forEach { computers[it].infectUnconditionally(virus) }
+
+                indexesOfInfectedComputers.forEach { index ->
+                    check(index in computers.indices) { "Incorrect computer index on virus ${it.first}" }
+                    computers[index].infectUnconditionally(virus)
+                }
             } catch (exception: NumberFormatException) {
                 throw NumberFormatException("Unable to determine the computer index on virus ${it.first}")
-            } catch (exception: IndexOutOfBoundsException) {
-                throw IndexOutOfBoundsException("Incorrect computer index on virus ${it.first}")
             }
         }
         check(viruses.isNotEmpty()) { "No viruses found" }

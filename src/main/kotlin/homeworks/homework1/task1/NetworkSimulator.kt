@@ -12,7 +12,9 @@ class NetworkSimulator(val networkData: NetworkData) {
     }
 
     private fun printState() {
-        networkData.computersData.forEachIndexed { index, computerData -> println("#${index + 1} - ${computerData.computer}") }
+        networkData.computersData.forEachIndexed { index, computerData ->
+            println("#${index + 1} - ${computerData.computer}")
+        }
     }
 
     private fun printIntroduction() {

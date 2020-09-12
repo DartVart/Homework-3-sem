@@ -211,7 +211,6 @@ internal class NetworkSimulatorTest {
                     )
                 }
 
-
                 @Test
                 fun run_1move_mustWork() {
                     val networkSimulator = getNetwork(fileName)
@@ -229,7 +228,6 @@ internal class NetworkSimulatorTest {
                     )
                 }
 
-
                 @Test
                 fun run_2move_mustWork() {
                     val networkSimulator = getNetwork(fileName)
@@ -246,7 +244,6 @@ internal class NetworkSimulatorTest {
                         )
                     )
                 }
-
 
                 @Test
                 fun run_3move_mustWork() {

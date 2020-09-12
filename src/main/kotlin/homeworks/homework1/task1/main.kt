@@ -4,7 +4,6 @@ import java.io.File
 import java.io.FileNotFoundException
 import java.lang.Exception
 import java.lang.IllegalStateException
-import java.lang.IndexOutOfBoundsException
 import java.lang.NumberFormatException
 import kotlin.NoSuchElementException
 
@@ -70,8 +69,6 @@ fun importNetworkFromFile(inputFile: File): NetworkData? {
     try {
         return NetworkFileParser().importNetwork(inputFile)
     } catch (exception: IllegalStateException) {
-        onParsingException(exception)
-    } catch (exception: IndexOutOfBoundsException) {
         onParsingException(exception)
     } catch (exception: NumberFormatException) {
         onParsingException(exception)
