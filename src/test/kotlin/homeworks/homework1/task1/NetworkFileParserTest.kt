@@ -30,19 +30,19 @@ internal class NetworkFileParserTest {
 
     @Test
     fun importNetwork_checkNumberOfComputers_mustWork() {
-        val networkData = parseFileWithoutMistakes("smallNetwork.txt")
+        val networkData = parseFileWithoutMistakes("unitProbability/smallNetwork.txt")
         assertEquals(4, networkData.computersData.size)
     }
 
     @Test
     fun importNetwork_checkViruses_mustWork() {
-        val networkData = parseFileWithoutMistakes("twoViruses.txt")
-        assertTrue(networkData.viruses.contains(Virus("Lukavyj")) && networkData.viruses.contains(Virus("Insidious")))
+        val networkData = parseFileWithoutMistakes("probabilityBetween0And1/twoViruses.txt")
+        assertTrue(networkData.viruses.contains(Virus("Virus_1")) && networkData.viruses.contains(Virus("Virus_2")))
     }
 
     @Test
     fun importNetwork_checkOs_mustWork() {
-        val networkData = parseFileWithoutMistakes("smallNetwork.txt")
+        val networkData = parseFileWithoutMistakes("unitProbability/smallNetwork.txt")
         val computers = networkData.computersData.map { it.computer }
         val windows = OperatingSystem("Windows", 1.0)
         val linux = OperatingSystem("Linux", 1.0)
@@ -58,7 +58,7 @@ internal class NetworkFileParserTest {
 
     @Test
     fun importNetwork_checkConnections_mustWork() {
-        val networkData = parseFileWithoutMistakes("smallNetwork.txt")
+        val networkData = parseFileWithoutMistakes("unitProbability/smallNetwork.txt")
         val computersData = networkData.computersData
         val computers = computersData.map { it.computer }
         assertTrue(

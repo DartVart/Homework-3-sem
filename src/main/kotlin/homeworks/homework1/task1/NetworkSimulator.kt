@@ -1,11 +1,11 @@
 package homeworks.homework1.task1
 
 class NetworkSimulator(val networkData: NetworkData) {
-    private fun spreadViruses() {
+    private fun spreadViruses(probabilityGenerator: ProbabilityGenerator) {
         networkData.viruses.forEach { virus ->
             networkData.computersData.filter { it.computer.isInfected(virus) }.forEach { it ->
                 it.connectedComputers.forEach {
-                    it.tryToGetInfected(virus)
+                    it.tryToGetInfected(virus, probabilityGenerator)
                 }
             }
         }
@@ -36,12 +36,17 @@ class NetworkSimulator(val networkData: NetworkData) {
 
     /**
      * Prints its state after each move
+     * @param probabilityGenerator the default is a [RandomProbabilityGenerator]
      * */
-    fun run(numberOfMoves: Int, delay: Long) {
+    fun run(
+        numberOfMoves: Int,
+        delay: Long,
+        probabilityGenerator: ProbabilityGenerator = RandomProbabilityGenerator()
+    ) {
         printIntroduction()
         Thread.sleep(delay)
         for (numberOfMove in 1..numberOfMoves) {
-            spreadViruses()
+            spreadViruses(probabilityGenerator)
             printStateAfterMove(numberOfMove)
             Thread.sleep(delay)
         }
