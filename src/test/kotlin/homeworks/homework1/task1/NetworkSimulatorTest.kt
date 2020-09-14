@@ -258,9 +258,9 @@ internal class NetworkSimulatorTest {
     }
 
     @Nested
-    inner class ZeroChanceOfInfection {
+    inner class ZeroProbabilityOfInfection {
         private val virus = Virus("ElectronicKiller")
-        private val fileName = "zeroChanceOfInfection.txt"
+        private val fileName = "zeroProbabilityOfInfection.txt"
 
         @Test
         fun run_0move_mustWork() {
