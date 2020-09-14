@@ -263,7 +263,7 @@ internal class NetworkSimulatorTest {
         private val fileName = "zeroChanceOfInfection.txt"
 
         @Test
-        fun run_zeroChanceOfInfection_0move_mustWork() {
+        fun run_0move_mustWork() {
             val networkSimulator = getNetwork(fileName)
             networkSimulator.run(1, 0)
             val indexesOfInfectedComputers = listOf(0)
@@ -280,7 +280,7 @@ internal class NetworkSimulatorTest {
         }
 
         @Test
-        fun run_zeroChanceOfInfection_1000move_mustWork() {
+        fun run_1000move_mustWork() {
             val networkSimulator = getNetwork(fileName)
             networkSimulator.run(1000, 0)
             val indexesOfInfectedComputers = listOf(0)
