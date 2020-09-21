@@ -1,0 +1,7 @@
+Windows(0.6) Linux(0.2) MacOS(0.4)
+Windows MacOS Linux Linux
+0 1 1 1
+1 0 1 1
+1 1 0 1
+1 1 1 0
+Virus_1(1)

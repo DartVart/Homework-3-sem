@@ -1,0 +1,8 @@
+Windows(0.1) Linux(0.3) MacOS(0.6) MS-DOS(0.5)
+Windows MacOS Linux MS-DOS MS-DOS
+0 1 0 0 0
+1 0 1 1 0
+0 1 0 0 0
+0 1 0 0 1
+0 0 0 1 0
+Virus_1(1) Virus_2(4)

@@ -1,0 +1,14 @@
+Windows(0.3) Linux(0.6) MacOS(0.2)
+Windows Linux Linux MacOS Windows Linux Linux MacOS Windows Linux Linux
+0 1 1 1 0 0 0 0 0 0 0
+1 0 0 0 1 0 0 0 0 0 0
+1 0 0 0 0 1 0 0 0 0 0
+1 0 0 0 0 0 1 0 0 0 0
+0 1 0 0 0 0 0 1 0 0 0
+0 0 1 0 0 0 0 0 1 0 0
+0 0 0 1 0 0 0 0 0 1 0
+0 0 0 0 1 0 0 0 0 0 1
+0 0 0 0 0 1 0 0 0 0 0
+0 0 0 0 0 0 1 0 0 0 0
+0 0 0 0 0 0 0 1 0 0 0
+Petya(1) MorrisWorm(8 3)
