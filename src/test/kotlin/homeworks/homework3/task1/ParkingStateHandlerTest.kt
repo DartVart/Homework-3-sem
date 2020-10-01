@@ -25,9 +25,8 @@ internal class ParkingStateHandlerTest {
     @Test
     fun checkAdd_moreCarsThanPlaces_mustWork() {
         val numberOfPlaces = Random.nextInt(0, 100)
-        val numberOfCars = numberOfPlaces + Random.nextInt(0, 100)
         val parkingStateHandler = ParkingStateHandler(numberOfPlaces)
-        repeat(numberOfCars) {
+        repeat(Random.nextInt(numberOfPlaces, 1000)) {
             parkingStateHandler.tryToAddCar()
         }
         assertEquals(numberOfPlaces, parkingStateHandler.getNumberOfOccupiedPlaces())
@@ -36,9 +35,8 @@ internal class ParkingStateHandlerTest {
     @Test
     fun checkAddReturn_moreCarsThanPlaces_mustWork() {
         val numberOfPlaces = Random.nextInt(0, 100)
-        val numberOfCars = numberOfPlaces + Random.nextInt(0, 100)
         val parkingStateHandler = ParkingStateHandler(numberOfPlaces)
-        repeat(numberOfCars) {
+        repeat(Random.nextInt(numberOfPlaces, 1000)) {
             parkingStateHandler.tryToAddCar()
         }
 
@@ -76,7 +74,7 @@ internal class ParkingStateHandlerTest {
 
     @Test
     fun checkAddAndRemove_removeAllCars_mustWork() {
-        val numberOfPlaces = (Random.nextInt(0, 1000)) * 2
+        val numberOfPlaces = (Random.nextInt(0, 100))
         val parkingStateHandler = ParkingStateHandler(numberOfPlaces)
         repeat(2 * numberOfPlaces) {
             parkingStateHandler.tryToAddCar()

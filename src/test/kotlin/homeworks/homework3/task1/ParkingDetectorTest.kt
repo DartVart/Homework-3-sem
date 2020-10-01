@@ -46,7 +46,7 @@ internal class ParkingDetectorTest {
                     secondDetector.tryToEnter()
                 }
                 repeat(numberOfPlaces / 8) {
-                    secondDetector.tryToExit()
+                    firstDetector.tryToExit()
                     secondDetector.tryToExit()
                 }
             }
@@ -57,7 +57,7 @@ internal class ParkingDetectorTest {
 
     @RepeatedTest(20)
     fun manyDetectors_morePlacesThanCars_mustWork() {
-        val numberOfPlaces = Random.nextInt(0, 20) * 32
+        val numberOfPlaces = Random.nextInt(0, 100) * 32
         val parkingStateHandler = ParkingStateHandler(numberOfPlaces)
         val firstDetector = ParkingDetector(parkingStateHandler)
         val secondDetector = ParkingDetector(parkingStateHandler)
@@ -79,7 +79,7 @@ internal class ParkingDetectorTest {
 
     @RepeatedTest(20)
     fun moreCarsThanPlaces_mustWork() {
-        val numberOfPlaces = Random.nextInt(0, 1000)
+        val numberOfPlaces = Random.nextInt(0, 100)
         val parkingStateHandler = ParkingStateHandler(numberOfPlaces)
         val firstDetector = ParkingDetector(parkingStateHandler)
         val secondDetector = ParkingDetector(parkingStateHandler)
@@ -87,7 +87,7 @@ internal class ParkingDetectorTest {
 
         runBlocking {
             launch {
-                repeat(1000) {
+                repeat(Random.nextInt(numberOfPlaces, 1000)) {
                     firstDetector.tryToEnter()
                     secondDetector.tryToEnter()
                     thirdDetector.tryToEnter()
@@ -100,7 +100,7 @@ internal class ParkingDetectorTest {
 
     @RepeatedTest(20)
     fun additionalCalculationOfOccupiedPlaces_mustWork() {
-        val numberOfPlaces = Random.nextInt(0, 1000)
+        val numberOfPlaces = Random.nextInt(0, 100)
         val numberOfOccupiedPlaces = AtomicInteger(0)
         val parkingStateHandler = ParkingStateHandler(numberOfPlaces)
         val firstDetector = ParkingDetector(parkingStateHandler)
@@ -109,7 +109,7 @@ internal class ParkingDetectorTest {
 
         runBlocking {
             launch {
-                repeat(Random.nextInt(0, 1000)) {
+                repeat(Random.nextInt(0, 100)) {
                     if (withContext(Dispatchers.Default) { thirdDetector.tryToEnter() }) {
                         numberOfOccupiedPlaces.incrementAndGet()
                     }
@@ -117,7 +117,7 @@ internal class ParkingDetectorTest {
                         numberOfOccupiedPlaces.decrementAndGet()
                     }
                 }
-                repeat(Random.nextInt(0, 1000)) {
+                repeat(Random.nextInt(0, 100)) {
                     if (withContext(Dispatchers.Default) { firstDetector.tryToExit() }) {
                         numberOfOccupiedPlaces.decrementAndGet()
                     }
