@@ -1,9 +1,6 @@
 package homeworks.homework3.task1
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.RepeatedTest
@@ -19,13 +16,11 @@ internal class ParkingDetectorTest {
         val detector = ParkingDetector(parkingStateHandler)
 
         runBlocking {
-            launch {
-                repeat(numberOfPlaces / 2) {
-                    detector.tryToEnter()
-                }
-                repeat(numberOfPlaces / 4) {
-                    detector.tryToExit()
-                }
+            repeat(numberOfPlaces / 2) {
+                detector.tryToEnter()
+            }
+            repeat(numberOfPlaces / 4) {
+                detector.tryToExit()
             }
         }
 
@@ -40,15 +35,13 @@ internal class ParkingDetectorTest {
         val secondDetector = ParkingDetector(parkingStateHandler)
 
         runBlocking {
-            launch {
-                repeat(numberOfPlaces / 4) {
-                    firstDetector.tryToEnter()
-                    secondDetector.tryToEnter()
-                }
-                repeat(numberOfPlaces / 8) {
-                    firstDetector.tryToExit()
-                    secondDetector.tryToExit()
-                }
+            repeat(numberOfPlaces / 4) {
+                firstDetector.tryToEnter()
+                secondDetector.tryToEnter()
+            }
+            repeat(numberOfPlaces / 8) {
+                firstDetector.tryToExit()
+                secondDetector.tryToExit()
             }
         }
 
@@ -64,13 +57,11 @@ internal class ParkingDetectorTest {
         val thirdDetector = ParkingDetector(parkingStateHandler)
 
         runBlocking {
-            launch {
-                repeat(numberOfPlaces / 4) {
-                    firstDetector.tryToEnter()
-                    secondDetector.tryToEnter()
-                    thirdDetector.tryToExit()
-                    secondDetector.tryToEnter()
-                }
+            repeat(numberOfPlaces / 4) {
+                firstDetector.tryToEnter()
+                secondDetector.tryToEnter()
+                thirdDetector.tryToExit()
+                secondDetector.tryToEnter()
             }
         }
 
@@ -86,12 +77,10 @@ internal class ParkingDetectorTest {
         val thirdDetector = ParkingDetector(parkingStateHandler)
 
         runBlocking {
-            launch {
-                repeat(Random.nextInt(numberOfPlaces, 1000)) {
-                    firstDetector.tryToEnter()
-                    secondDetector.tryToEnter()
-                    thirdDetector.tryToEnter()
-                }
+            repeat(Random.nextInt(numberOfPlaces, 1000)) {
+                firstDetector.tryToEnter()
+                secondDetector.tryToEnter()
+                thirdDetector.tryToEnter()
             }
         }
 
@@ -108,22 +97,20 @@ internal class ParkingDetectorTest {
         val thirdDetector = ParkingDetector(parkingStateHandler)
 
         runBlocking {
-            launch {
-                repeat(Random.nextInt(0, 100)) {
-                    if (withContext(Dispatchers.Default) { thirdDetector.tryToEnter() }) {
-                        numberOfOccupiedPlaces.incrementAndGet()
-                    }
-                    if (withContext(Dispatchers.Default) { firstDetector.tryToExit() }) {
-                        numberOfOccupiedPlaces.decrementAndGet()
-                    }
+            repeat(Random.nextInt(0, 100)) {
+                if (thirdDetector.tryToEnter()) {
+                    numberOfOccupiedPlaces.incrementAndGet()
                 }
-                repeat(Random.nextInt(0, 100)) {
-                    if (withContext(Dispatchers.Default) { firstDetector.tryToExit() }) {
-                        numberOfOccupiedPlaces.decrementAndGet()
-                    }
-                    if (withContext(Dispatchers.Default) { secondDetector.tryToEnter() }) {
-                        numberOfOccupiedPlaces.incrementAndGet()
-                    }
+                if (firstDetector.tryToExit()) {
+                    numberOfOccupiedPlaces.decrementAndGet()
+                }
+            }
+            repeat(Random.nextInt(0, 100)) {
+                if (firstDetector.tryToExit()) {
+                    numberOfOccupiedPlaces.decrementAndGet()
+                }
+                if (secondDetector.tryToEnter()) {
+                    numberOfOccupiedPlaces.incrementAndGet()
                 }
             }
         }
@@ -138,7 +125,7 @@ internal class ParkingDetectorTest {
         val detector = ParkingDetector(parkingStateHandler)
         var result = true
         runBlocking {
-            result = withContext(Dispatchers.Default) { detector.tryToEnter() }
+            result = detector.tryToEnter()
         }
         assertTrue(result)
     }
@@ -153,7 +140,7 @@ internal class ParkingDetectorTest {
             repeat(2) {
                 detector.tryToEnter()
             }
-            result = withContext(Dispatchers.Default) { detector.tryToExit() }
+            result = detector.tryToExit()
         }
         assertTrue(result)
     }
